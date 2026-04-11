@@ -4,7 +4,7 @@ def get_daily_total(df):
   """Gibt die gesamte Bildschrimzeit pro tag zurück"""
   return df.grupby("date")["usage_minutes"].sum()
 
-def get_top_5_app_per_day(df):
+def get_top_5_apps_per_day(df):
   """Gibt für jeden tag die Top5 meistgenutzten Apps zurück."""
   result = {}
   for date, group in df.groupby("date"):
