@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from data_loader import load_data
 from data_analyzer import (
-  get_top_5_app_per_day,
+  get_top_5_apps_per_day,
   get_top_5_total_time
 )
 
@@ -27,7 +27,7 @@ st.bar_chart(daily_total)
 
 #Top 5 Apps pro Tag berechnen
 top5_dict = get_top_5_apps_per_day(df)
-top5_totals = get_top_5_totaltime(top5_dict)
+top5_totals = get_top_5_total_time(top5_dict)
 
 st.header("Top 5 Apps pro Tag")
 
