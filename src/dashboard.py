@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-from data_loader import loead_data
+from data_loader import load_data
 from data_analyzer import (
   get_top_5_app_per_day,
   get_top_5_total_time
