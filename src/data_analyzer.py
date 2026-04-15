@@ -1,11 +1,11 @@
 import pandas as pd
 
 def get_daily_total(df):
-  """Gibt die gesamte Bildschrimzeit pro tag zurück"""
-  return df.grupby("date")["usage_minutes"].sum()
+  """Gibt die gesamte Bildschirmzeit pro Tag zurück"""
+  return df.groupby("date")["usage_minutes"].sum()
 
 def get_top_5_apps_per_day(df):
-  """Gibt für jeden tag die Top5 meistgenutzten Apps zurück."""
+  """Gibt für jeden Tag die Top 5 meistgenutzten Apps zurück."""
   result = {}
   for date, group in df.groupby("date"):
     top5 = group.groupby("app")["usage_minutes"].sum().sort_values(ascending=False).head(5)
