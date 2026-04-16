@@ -18,7 +18,7 @@ if df.empty:
   st.stop()
 
 #Übersicht pro Tag
-st.header("Tagesübersicht der Bildschrimzeit")
+st.header("Tagesübersicht der Bildschirmzeit")
 
 #Gesamtnutzung pro Tag(einfaches Diagramm)
 daily_total = df.groupby("date")["usage_minutes"].sum()

@@ -1,5 +1,7 @@
 import pandas as pd
 
 def load_data (path="data/screentime.csv"):
-  """Lädt die Screentime CSV-Datei und gibt ein DataFrame zurück."""
+  """Lädt die Screentime Daten aus der CSV-Datei und gibt ein DataFrame zurück.
+      :param: path: Pfad zur CSV-Datei
+      :return: Pandas DataFrame mit Screentime-Daten"""
   return pd.read_csv(path)
