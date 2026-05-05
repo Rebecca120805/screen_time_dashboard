@@ -44,6 +44,70 @@ if df.empty:
   st.warning("Die ausgewählte Woche enthält keine Daten.")
   st.stop()
 
+#Berechnung der KPIs
+logger.info("Starte Berechnung der KPI-Werte für die Woche")
+
+try:
+  #Gesamte Nutzungszeit der Woche
+  total_week_time = int(df["usage_minutes"].sum())
+
+  #Anzahl betrachteter Tage
+  num_days = df["date"].nunique()
+
+  #Durchschnittliche Tagesnutzung
+  avg_daily_time = int(total_week_time / num_days)
+
+  #Tägliche Gesamtnutzung (für Max-Tage)
+  daily_totals = get_daily_total(df)
+
+  #Tag mit höchster Bildschirmzeit
+  max_day = daily_totals.idxmax()
+  max_day_time = int(daily_totals.max())
+
+  #Meistgenutzte App der Woche
+  most_used_app = (
+    df.groupby("app")["usage_minutes"]
+    .sum()
+    .idxmax()
+  )
+
+  logger.info("KPI-Berechnungen erfolgreich abgeschlossen")
+
+except Exception:
+  logger.critical("Kritischer Fehler bei der KPI-Berechnung", exc_info = True)
+  st.error("KPI-Werte konnten nicht berechnet werden.")
+  st.stop()
+
+#KPI-Leiste anzeigen
+st.header("📊 Wochenübersicht – KPIs")
+
+col1, col2, col3, col4, col5 = st.columns(5)
+
+col1.metric(
+  label = "⏱️ Ø Nutzung / Tag"
+  value = f"{avg_daily_time} min"
+)
+
+col2.metric(
+  label = "📱 Gesamtzeit Woche",
+  value = f"{total_week_time} min"
+)
+
+col3.metric(
+  label = "📅 Erfasste Tage",
+  value = str(num_days)
+)
+
+col4.metric(
+  label = "🏆 Höchster Nutzungstag",
+  value = f"{max_day} ({max_day_time} min)"
+)
+
+col5.metric(
+  label = "⭐ Top App der Woche",
+  value=most_used_app
+)
+
 #Wochenübersicht der täglichen Bildschirmzeit - Barchart
 st.header("📅 Gesamte Bildschirmzeit der Woche")
 logger.info("Starte Berechnung der wöchentlichen Gesamtnutzung")
