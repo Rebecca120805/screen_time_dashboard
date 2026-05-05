@@ -208,3 +208,6 @@ __marimo__/
 
 #Logs
 logs/*
+
+#Lokale Screentime-Daten (nicht versioniert)
+screentime_data/
