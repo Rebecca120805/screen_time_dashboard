@@ -84,7 +84,7 @@ st.header("📊 Wochenübersicht – KPIs")
 col1, col2, col3, col4, col5 = st.columns(5)
 
 col1.metric(
-  label = "⏱️ Ø Nutzung / Tag"
+  label = "⏱️ Ø Nutzung / Tag",
   value = f"{avg_daily_time} min"
 )
 
