@@ -3,7 +3,8 @@ import pandas as pd
 
 from data_loader import (
   list_week_files,
-  load_week_data
+  load_week_data,
+  DATA_DIR
 )
 from data_analyzer import (
   get_top_5_apps_per_day,
@@ -22,6 +23,8 @@ logger.info("Dashboard gestartet")
 #Auswahl der lokalen Wochen-Datei
 st.header("📂 Datenauswahl")
 week_files = list_week_files()
+print(DATA_DIR)
+logger.info(f"Suche Dateien im Verzeichnis: {DATA_DIR}")
 
 #Wenn keine Files vorhanden sind
 if not week_files:
