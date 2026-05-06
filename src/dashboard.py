@@ -157,6 +157,14 @@ st.subheader("Vergleich: Bildschirmzeit vs. Uni-Zeit")
 logger.info("Zeige Vergleich Bildschirmzeit vs. Uni-Zeit")
 st.bar_chart(comparison_df.set_index("date")[["screen_time", "uni_time"]])
 
+#Prozentanalyse Screen Time vs Uni Zeit
+comparison_df["percentage"] =(comparison_df["screen_time"] / comparison_df["uni_time"]) * 100
+logger.debug("Berechne prozentualen Vergleich zwischen Screen <Time und Uni Zeit")
+
+st.subheader("Prozentualer Vergleich (Screen Time in % der Uni-Zeit)")
+logger.info("Zeige Prozentanalyse im Dashboard")
+st.bar_chart(comparison_df.set_index("date")[["percentage"]])
+
 #Tag auswählen für Detaildaten
 st.header("🔎 Detailansicht für einen Tag")
 
