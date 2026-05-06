@@ -1,10 +1,11 @@
 import logging
 from logging import Logger
 
+
 def setup_logger(name: str) -> Logger:
-    """ Erstellt und konfiguriert einen Logger mit zwei Handlern:
+    """Erstellt und konfiguriert einen Logger mit zwei Handlern:
     - Console-Ausgabe für kritische Meldungen (ERROR/CRITICAL)
-    - Datei-Ausgabe für alle Meldungen (DEBUG bis CRITICAL) """
+    - Datei-Ausgabe für alle Meldungen (DEBUG bis CRITICAL)"""
 
     # Verhindern doppelter Logs, falls der Logger mehrfach erstellt wird
     logger = logging.getLogger(name)
@@ -16,7 +17,7 @@ def setup_logger(name: str) -> Logger:
     # Formatter
 
     formatter = logging.Formatter(
-        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
     )
 
     # Console handler (hohe Dringlichkeit)
