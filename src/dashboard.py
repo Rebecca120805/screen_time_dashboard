@@ -44,6 +44,19 @@ if df.empty:
   st.warning("Die ausgewählte Woche enthält keine Daten.")
   st.stop()
 
+#Uni-Zeiten (Referenzwerte)
+uni_time_map = {
+  "Monday": 420,
+  "Tuesday": 220,
+  "Wednesday": 180,
+  "Thursday": 480,
+  "Friday": 225
+}
+
+df["date"] = pd.to_datetime(df["date"])
+df["weekday"] = df["date"].dt.day_name()
+df["uni_minutes"] = df["weekday"].map(uni_time_map)
+
 #Berechnung der KPIs
 logger.info("Starte Berechnung der KPI-Werte für die Woche")
 
@@ -125,9 +138,24 @@ except Exception:
   st.error("Ein interner Fehler ist bei der Wochenauswertung aufgetreten.")
   st.stop()
 
+#VERGLEICH mit Uni-Zeit berechnen
+comparison_df = daily_total.reset_index()
+comparison_df.columns = ["date", "screen_time"]
+
+#Wochentag hinzufügen
+comparison_df["date"] = pd.to_datetime(comparison_df["date"])
+comparison_df["weekday"] = comparison_df["date"].dt.day_name()
+
+#Uni-Zeit zuweisen
+comparison_df["uni_time"] = comparison_df["weekday"].map(uni_time_map)
+
 st.subheader("Gesamte Nutzung pro Tag in Minuten")
 logger.info("Zeige Diagramm: Gesamte Bildschirmzeit pro Tag")
 st.bar_chart(daily_total)
+
+st.subheader("Vergleich: Bildschirmzeit vs. Uni-Zeit")
+logger.info("Zeige Vergleich Bildschirmzeit vs. Uni-Zeit")
+st.bar_chart(comparison_df.set_index("date")[["screen_time", "uni_time"]])
 
 #Tag auswählen für Detaildaten
 st.header("🔎 Detailansicht für einen Tag")
