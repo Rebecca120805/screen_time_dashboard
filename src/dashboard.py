@@ -163,7 +163,7 @@ try:
     top5_total_time = int(top5_apps.sum())
 
 except ValueError:
-    logger.warning("Top-5-Berechnung nicht möglich  keine gültigen Daten")
+    logger.warning("Top-5-Berechnung nicht möglich  keine gültigen Daten") #error
     st.warning("Top-5-Apps können nicht berechnet werden.")
     st.stop()
 
