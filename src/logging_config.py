@@ -1,3 +1,4 @@
+import os
 import logging
 from logging import Logger
 
@@ -13,6 +14,8 @@ def setup_logger(name: str) -> Logger:
 
     if logger.handlers:
         return logger
+
+    os.makedirs("logs", exist_ok=True)
 
     # Formatter
 

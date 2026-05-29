@@ -5,7 +5,10 @@ from logging_config import setup_logger
 logger = setup_logger(__name__)
 
 # Fester lokaler basis-Pfad (Laptop)
-DATA_DIR = os.path.expanduser("~/screentime_data")
+DATA_DIR = os.getenv(
+    "DATA_DIR",
+    os.path.expanduser("~/screentime_data")
+)
 
 
 def list_week_files() -> list[str]:

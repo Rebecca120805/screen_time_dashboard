@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE
+.idea/
+.vscode/
+
+# Git
+.git/
+.gitignore
+
+# Logs
+logs/
+
+# virtuelle Umgebungen
+venv/
+.env/
+
+# Mac
+.DS_Store
